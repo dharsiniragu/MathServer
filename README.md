@@ -54,18 +54,11 @@ math.html
 
         <form method="POST">
           {% csrf_token %}
-            
-            <label> Initial Cust:</label>
-            <input type="number"  value="{{ Customers_count }}" name="length">
-            <br><br>
-            
+             <label> Initial Cust:</label>
+            <input type="number"  value="{{ Customers_count }}" name="length"><br><br>
             <label> present Cust:</label>
-            <input type="number"  value="{{ Initial_Customer }}" name="breadth">
-            <br><br>
-            
-            <input type="submit" value="calculate">
-            <br><br>
-            
+            <input type="number"  value="{{ Initial_Customer }}" name="breadth"><br><br>
+             <input type="submit" value="calculate"><br><br>
             <label>Churn Rate</label>
             <input type="number"  value="{{ area }}" >
         </form>
