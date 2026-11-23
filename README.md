@@ -1,5 +1,5 @@
 # Ex.03 Design a Website for Server Side Processing
-## Date:
+## Date: 15.11.2026
 
 ## AIM:
 To create a web page to calculate Churn Rate using server-side scripts.
@@ -42,13 +42,63 @@ Render the result to the HTML template.
 Publish the website in Localhost.
 
 ## PROGRAM:
+```
+math.html
+<html>
+    <head>
+        <title>calculation</title>
+    </head>
+    <body>
+        <h1><b>Dharsini R (26005256)</b></h1>
+        <h2><u>Churn rate calculation</u></h2>
 
+        <form method="POST">
+          {% csrf_token %}
+            
+            <label> Initial Cust:</label>
+            <input type="number"  value="{{ Customers_count }}" name="length">
+            <br><br>
+            
+            <label> present Cust:</label>
+            <input type="number"  value="{{ Initial_Customer }}" name="breadth">
+            <br><br>
+            
+            <input type="submit" value="calculate">
+            <br><br>
+            
+            <label>Churn Rate</label>
+            <input type="number"  value="{{ area }}" >
+        </form>
+    </body>
+</html>
 
+view.py
+from django.shortcuts import render
+
+def cumchurn_area(request):
+     Customers_count = float(request.POST.get('length', '0'))
+     Initial_Customer   = float(request.POST.get('breadth', '0'))
+     area =( Customers_count / Initial_Customer)*100 if request.method == 'POST' else 0
+
+     print("Customers lost count =", Customers_count)
+     print("Initial customers count =", Initial_Customer)
+     print("Churn Rate =", area)
+
+     return render( request, 'mathapp/math.html',{'Customers_count': Customers_count, 'Initial_Customer': Initial_Customer, 'area': area} )
+    
+urls.py
+from django.contrib import admin
+from django.urls import path
+from mathapp import views
+
+urlpatterns = [ path('', views. cumchurn_area, name='cumchurn_area'),]
+
+```
 ## OUTPUT - SERVER SIDE:
-
+![alt text](<Screenshot (27).png>)
 
 ## OUTPUT - WEBPAGE:
-
+![alt text](<Screenshot (26).png>)
 
 ## RESULT:
 The the web page to calculate Churn Rate using server-side scripts is created successfully.
